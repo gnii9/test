@@ -38,24 +38,22 @@ const NAME_PROMPTS = [
 ];
 
 // --- HELPER FUNCTIONS ---
+
+// ĐÃ CHUYỂN ĐỔI: Sử dụng React.createElement thay vì JSX
 const renderHighlightedMessage = (message, name) => {
     if (!name.trim() || !message) {
         return message;
     }
     const parts = message.split(new RegExp(`(${name})`, 'gi'));
 
-    return (
-        <>
-            {parts.map((part, index) =>
-                part.toLowerCase() === name.toLowerCase() ? (
-                    <span key={index} className="text-pink-400 font-extrabold">
-                        {part}
-                    </span>
-                ) : (
+    return React.createElement(React.Fragment, null,
+        parts.map((part, index) =>
+            part.toLowerCase() === name.toLowerCase() ?
+                React.createElement('span', { key: index, className: "text-pink-400 font-extrabold" },
                     part
-                )
-            )}
-        </>
+                ) :
+                part
+        )
     );
 };
 
@@ -70,7 +68,6 @@ const generateRandomHearts = () => {
         const rotation = Math.random() * 60 - 30; // rotation between -30 and 30 deg
         const opacity = Math.random() * 0.3 + 0.7; // opacity between 0.7 and 1.0
 
-        // Distribute hearts around the card
         const side = i % 4; // 0: top, 1: right, 2: bottom, 3: left
         let top, left, right, bottom;
 
@@ -119,16 +116,18 @@ const generateRandomHearts = () => {
 };
 
 // --- COMPONENTS ---
+
+// ĐÃ CHUYỂN ĐỔI: Sử dụng React.createElement thay vì JSX
 const HeartIcon = ({ style }) => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        style={style}
-        aria-hidden="true"
-    >
-        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-    </svg>
+    React.createElement('svg', {
+        xmlns: "http://www.w3.org/2000/svg",
+        viewBox: "0 0 24 24",
+        fill: "currentColor",
+        style: style,
+        'aria-hidden': "true" // Thuộc tính 'aria-hidden' được chuyển thành chuỗi
+    },
+        React.createElement('path', { d: "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" })
+    )
 );
 
 const App = () => {
@@ -148,7 +147,6 @@ const App = () => {
     const handleCreateWish = () => {
         if (!name.trim()) return;
 
-        // Generate random hearts for this instance
         setHearts(generateRandomHearts());
 
         const randomIndex = Math.floor(Math.random() * WISH_MESSAGES.length);
@@ -173,95 +171,78 @@ const App = () => {
         }, 700);
     };
 
-    return (
-        <main className="flex flex-col items-center justify-center min-h-screen w-full bg-gradient-to-br from-[#100f1c] via-[#1a0b2e] to-black p-4 overflow-hidden">
-            {step === 'welcome' && (
-                <div className="transition-opacity duration-500">
-                    <button
-                        onClick={handleWelcomeClick}
-                        className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-12 py-5 text-2xl font-bold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-white/20 shadow-lg shadow-purple-500/10"
-                        aria-label="Start generating a wish"
-                    >
-                        Bắt đầu
-                    </button>
-                </div>
-            )}
+    // ĐÃ CHUYỂN ĐỔI: Toàn bộ phần return đã được chuyển sang React.createElement
+    return React.createElement('main', { className: "flex flex-col items-center justify-center min-h-screen w-full bg-gradient-to-br from-[#100f1c] via-[#1a0b2e] to-black p-4 overflow-hidden" },
+        step === 'welcome' && React.createElement('div', { className: "transition-opacity duration-500" },
+            React.createElement('button', {
+                onClick: handleWelcomeClick,
+                className: "bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-12 py-5 text-2xl font-bold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-white/20 shadow-lg shadow-purple-500/10",
+                'aria-label': "Start generating a wish"
+            },
+                "Bắt đầu"
+            )
+        ),
 
-            {step === 'name' && (
-                <div className="flex flex-col items-center gap-8 w-full max-w-lg text-center animate-fade-in">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-100 tracking-tight">
-                        {namePrompt}
-                    </h2>
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        onKeyPress={(e) => {
-                            if (e.key === 'Enter' && name.trim()) {
-                                handleCreateWish();
-                            }
-                        }}
-                        placeholder="Nhập tên ở đây..."
-                        className="bg-white/5 backdrop-blur-lg border border-white/20 rounded-full px-8 py-4 text-xl text-white text-center w-full max-w-sm focus:ring-2 focus:ring-purple-400 focus:outline-none transition-all duration-300"
-                        aria-label="Name input"
-                        autoFocus
-                    />
-                    <button
-                        onClick={handleCreateWish}
-                        disabled={!name.trim()}
-                        className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-12 py-5 text-2xl font-bold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-white/20 shadow-lg shadow-purple-500/10 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                        aria-label="Create wish"
-                    >
-                        bấm vào tim tớ này!
-                    </button>
-                </div>
-            )}
+        step === 'name' && React.createElement('div', { className: "flex flex-col items-center gap-8 w-full max-w-lg text-center animate-fade-in" },
+            React.createElement('h2', { className: "text-3xl md:text-4xl font-bold text-gray-100 tracking-tight" },
+                namePrompt
+            ),
+            React.createElement('input', {
+                type: "text",
+                value: name,
+                onChange: (e) => setName(e.target.value),
+                onKeyPress: (e) => {
+                    if (e.key === 'Enter' && name.trim()) {
+                        handleCreateWish();
+                    }
+                },
+                placeholder: "Nhập tên ở đây...",
+                className: "bg-white/5 backdrop-blur-lg border border-white/20 rounded-full px-8 py-4 text-xl text-white text-center w-full max-w-sm focus:ring-2 focus:ring-purple-400 focus:outline-none transition-all duration-300",
+                'aria-label': "Name input",
+                autoFocus: true // Thuộc tính boolean được giữ nguyên
+            }),
+            React.createElement('button', {
+                onClick: handleCreateWish,
+                disabled: !name.trim(),
+                className: "bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-12 py-5 text-2xl font-bold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-white/20 shadow-lg shadow-purple-500/10 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
+                'aria-label': "Create wish"
+            },
+                "bấm vào tim tớ này!"
+            )
+        ),
 
-            {step === 'card' && (
-                <div
-                    className={`relative bg-black/40 backdrop-blur-2xl border border-white/10 p-8 md:p-12 rounded-3xl shadow-2xl shadow-purple-500/20 text-center max-w-lg w-full transition-all duration-700 ease-in-out transform ${
-                        isCardVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90 -rotate-3 translate-y-8'
-                    }`}
-                    aria-live="polite"
-                >
-                    {hearts.map(heart => (
-                        <HeartIcon
-                            key={heart.id}
-                            style={heart.style}
-                        />
-                    ))}
-
-                    <div className="flex flex-col items-center gap-6">
-                        <h1 className="text-3xl md:text-4xl font-bold text-gray-100 tracking-tight">
-                            {renderHighlightedMessage(message, name)}
-                        </h1>
-
-                        {/* HƯỚNG DẪN QUAN TRỌNG:
-                            1. Trong thư mục gốc của dự án, hãy tạo một thư mục tên là 'public'.
-                            2. Đặt tệp ghi âm của bạn vào thư mục 'public' và đảm bảo tên tệp là '03-52.mp3'.
-                            3. Đường dẫn src="/03-52.mp3" bên dưới sẽ trỏ đến đúng tệp đó và âm thanh sẽ phát được.
-                        */}
-                        <audio
-                            controls
-                            // Tên tệp này phải khớp chính xác với tệp trong thư mục 'public'
-                            src="/03-52.mp3"
-                            className="w-full max-w-sm rounded-full"
-                            aria-label="Audio wish"
-                        >
-                            Trình duyệt của bạn không hỗ trợ phát âm thanh.
-                        </audio>
-
-                        <button
-                            onClick={handleBack}
-                            className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-8 py-3 text-lg font-bold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-white/20 shadow-md shadow-purple-500/10"
-                            aria-label="Go back to generate a new wish"
-                        >
-                            Quay lại
-                        </button>
-                    </div>
-                </div>
-            )}
-        </main>
+        step === 'card' && React.createElement('div', {
+            className: `relative bg-black/40 backdrop-blur-2xl border border-white/10 p-8 md:p-12 rounded-3xl shadow-2xl shadow-purple-500/20 text-center max-w-lg w-full transition-all duration-700 ease-in-out transform ${isCardVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90 -rotate-3 translate-y-8'
+                }`,
+            'aria-live': "polite"
+        },
+            hearts.map(heart =>
+                React.createElement(HeartIcon, {
+                    key: heart.id,
+                    style: heart.style
+                })
+            ),
+            React.createElement('div', { className: "flex flex-col items-center gap-6" },
+                React.createElement('h1', { className: "text-3xl md:text-4xl font-bold text-gray-100 tracking-tight" },
+                    renderHighlightedMessage(message, name)
+                ),
+                React.createElement('audio', {
+                    controls: true,
+                    src: "/03-52.mp3",
+                    className: "w-full max-w-sm rounded-full",
+                    'aria-label': "Audio wish"
+                },
+                    "Trình duyệt của bạn không hỗ trợ phát âm thanh."
+                ),
+                React.createElement('button', {
+                    onClick: handleBack,
+                    className: "bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-8 py-3 text-lg font-bold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-white/20 shadow-md shadow-purple-500/10",
+                    'aria-label': "Go back to generate a new wish"
+                },
+                    "Quay lại"
+                )
+            )
+        )
     );
 };
 
