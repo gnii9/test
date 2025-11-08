@@ -1,7 +1,6 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import App from './App'; // Đảm bảo tệp App.jsx ở cùng thư mục
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
