@@ -10,8 +10,6 @@ const __dirname = path.dirname(__filename);
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
-    // <-- thêm base để GitHub Pages phục vụ tài nguyên đúng đường dẫn
-    base: '/test/',
     server: {
       port: 3000,
       host: '0.0.0.0',
