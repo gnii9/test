@@ -229,6 +229,9 @@ const App = () => {
                 React.createElement('audio', {
                     controls: true,
                     src: import.meta.env.BASE_URL + '03-52.mp3',
+                    preload: 'auto',
+                    onCanPlay: () => console.log('Audio can play'),
+                    onError: (e) => console.error('Audio error', e),
                     className: "w-full max-w-sm rounded-full",
                     'aria-label': "Audio wish"
                 },
