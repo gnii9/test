@@ -5,6 +5,11 @@ on:
     branches:
       - main
 
+# Đảm bảo chỉ 1 deployment chạy tại 1 thời điểm
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -28,6 +33,23 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          NODE_ENV: production
+
+      # Debug: Kiểm tra file audio có trong dist không
+      - name: Check build output
+        run: |
+          echo "=== Contents of dist folder ==="
+          ls -la dist/
+          echo "=== Checking for audio file ==="
+          if [ -f "dist/03-52.mp3" ]; then
+            echo "✓ Audio file found!"
+            ls -lh dist/03-52.mp3
+          else
+            echo "✗ Audio file NOT found!"
+            echo "Contents of public folder:"
+            ls -la public/ || echo "public folder doesn't exist"
+          fi
 
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v1
