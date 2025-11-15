@@ -31,15 +31,15 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: 'dist',
       emptyOutDir: true,
-      // ĐẢM BẢO FILE PUBLIC ĐƯỢC COPY
-      assetsInclude: ['**/*.mp3'],
+      copyPublicDir: true, // QUAN TRỌNG: Đảm bảo copy public folder
       rollupOptions: {
         output: {
           assetFileNames: (assetInfo) => {
-            if (assetInfo.name && assetInfo.name.endsWith('.mp3')) {
-              return 'assets/[name][extname]';
+            const ext = assetInfo.name.split('.').pop();
+            if (['mp3', 'wav', 'ogg'].includes(ext)) {
+              return `assets/[name][extname]`;
             }
-            return 'assets/[name]-[hash][extname]';
+            return `assets/[name]-[hash][extname]`;
           }
         }
       }
