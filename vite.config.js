@@ -9,11 +9,10 @@ const __dirname = path.dirname(__filename);
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   
-  // QUAN TRỌNG: Đặt tên repo GitHub của bạn ở đây
   const base = mode === 'production' ? '/test/' : '/';
   
   return {
-    base, // Thêm base URL cho GitHub Pages
+    base,
     server: {
       port: 3000,
       host: '0.0.0.0',
@@ -28,7 +27,22 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, '.'),
       }
     },
-    // Đảm bảo file audio được copy vào dist
     publicDir: 'public',
+    build: {
+      outDir: 'dist',
+      emptyOutDir: true,
+      // ĐẢM BẢO FILE PUBLIC ĐƯỢC COPY
+      assetsInclude: ['**/*.mp3'],
+      rollupOptions: {
+        output: {
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.name && assetInfo.name.endsWith('.mp3')) {
+              return 'assets/[name][extname]';
+            }
+            return 'assets/[name]-[hash][extname]';
+          }
+        }
+      }
+    }
   };
 });

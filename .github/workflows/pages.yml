@@ -37,18 +37,18 @@ jobs:
           NODE_ENV: production
 
       # Debug: Kiểm tra file audio có trong dist không
-      - name: Check build output
+      - name: Check audio file in build
         run: |
-          echo "=== Contents of dist folder ==="
+          echo "=== Checking dist folder ==="
           ls -la dist/
           echo "=== Checking for audio file ==="
           if [ -f "dist/03-52.mp3" ]; then
-            echo "✓ Audio file found!"
+            echo "✓ Audio file found in dist!"
             ls -lh dist/03-52.mp3
           else
-            echo "✗ Audio file NOT found!"
-            echo "Contents of public folder:"
-            ls -la public/ || echo "public folder doesn't exist"
+            echo "✗ Audio file NOT found in dist!"
+            echo "Trying to copy from public..."
+            cp public/03-52.mp3 dist/ || echo "Copy failed"
           fi
 
       - name: Upload artifact for GitHub Pages
