@@ -228,7 +228,7 @@ const App = () => {
                 ),
                 React.createElement('audio', {
                     controls: true,
-                    src: './03-52.mp3',
+                    src: 'https://raw.githubusercontent.com/gnii9/test/main/public/audio/03-52.mp3',
                     preload: 'auto',
                     className: "w-full max-w-sm rounded-full",
                     'aria-label': "Audio wish"
