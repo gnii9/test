@@ -6,16 +6,20 @@ const WISH_MESSAGES = [
     "Happy Men's Day! Chúc cậu luôn giữ được vibe tích cực, sống chất và thành công trong mọi dự định!",
     "19/11 chúc bạn luôn là ánh sáng trong mắt ai đó, và tìm thấy hạnh phúc trong từng khoảnh khắc!",
     "Chúc mày 19/11 không chỉ đẹp trai mà còn mạnh mẽ, kiên cường trước mọi thử thách!",
-    "19/11 chúc ông bạn đẹp trai đến mức gương vỡ vì ghen tị, thông minh đến mức máy tính phải bái phục!",
+    "19/11 này, chúc cậu luôn giữ được nụ cười tỏa nắng và trái tim ấm áp nhé!",
+    "Gửi đến cậu - người tuyệt vời, 19/11 thật ý nghĩa và tràn ngập niềm vui!",
+    "Chúc cậu có một ngày 19/11 thật đặc biệt, luôn là phiên bản tốt nhất của chính mình!",
     "Chúc bạn nam 19/11 luôn giữ được sự tự tin, bản lĩnh và trái tim ấm áp!",
     "19/11 chúc cậu sống như trend mới nhất: luôn hot, luôn viral và luôn được yêu thương!",
     "Happy Men's Day! Chúc bạn không chỉ thành công trong công việc mà còn hạnh phúc trong từng phút giây!",
     "Chúc mày 19/11 có thêm thật nhiều năng lượng để chinh phục mọi mục tiêu và ước mơ!",
     "19/11 chúc ông bạn luôn nhìn đời bằng đôi mắt tích cực và trái tim rộng mở!",
+    "Ê bạn! 19/11 này đừng quên tự thưởng cho bản thân vì đã cố gắng hết mình nhé!",
     "Chúc bạn nam 19/11 luôn được bao bọc bởi tình yêu thương và sự trân trọng!",
     "Happy Men's Day! Chúc cậu không ngừng học hỏi, phát triển và trở thành phiên bản tốt nhất mỗi ngày!",
-    "19/11 chúc mày luôn giữ được ngọn lửa nhiệt huyết trong tim và tinh thần chiến binh!",
-    "Chúc ông bạn 19/11 đẹp trai hơn ảnh filter, thông minh hơn trợ lý ảo, và cool ngầu hơn cả idol!",
+    "Chúc cậu 19/11 luôn tỏa sáng với năng lượng tích cực và sự tự tin!",
+    "19/11 - Ngày để cậu thêm tự hào về bản thân, hãy cứ là chính mình và tỏa sáng!",
+    "Chúc cậu luôn giữ được ngọn lửa đam mê và nhiệt huyết trong mọi việc!",
     "19/11 chúc bạn tìm thấy ý nghĩa thực sự của cuộc sống và theo đuổi đam mê với cả trái tim!",
     "Chúc mày 19/11 luôn đủ mạnh mẽ để vượt qua khó khăn, đủ kiên nhẫn để chờ đợi thành công!",
     "Happy Men's Day! Chúc cậu sống hết mình, cười thật tươi và yêu thương hết lòng!",
@@ -25,16 +29,23 @@ const WISH_MESSAGES = [
 ];
 
 const NAME_PROMPTS = [
-    "Visual đỉnh quá trời, cho mình xin cái tên để còn lưu vào tim!",
-    "Đẹp trai thế này chắc tên cũng xịn lắm, cho mình biết với nha!",
-    "Góc xin tên trai đẹp: bạn không cho là mình mất ngủ đó!",
-    "Thần thái như idol vậy á, cho mình xin tên để còn follow!",
-    "Bạn ơi, đẹp trai vậy mà chưa biết tên thì tiếc quá!",
-    "Cho mình xin tên để còn biết đường mà crush đúng người!",
-    "Nhìn bạn là thấy gu mình rồi đó, cho xin cái tên đi nè!",
-    "Đẹp trai như này mà không biết tên thì uổng công ngắm mất!",
-    "Tên bạn là gì để mình còn lưu vào danh bạ chồng tương lai?",
-    "Bạn đẹp trai quá, cho mình xin tên để còn mơ tiếp!"
+    "Cho mình biết tên bạn đi!",
+    "Bạn tên gì thế?",
+    "Tên của bạn là gì vậy?",
+    "Mình có thể biết tên bạn không?",
+    "Bạn tên gì? Kể mình nghe đi!",
+    "Nhanh nhanh cho mình biết tên bạn nào!",
+    "Tên bạn là gì? Mình tò mò lắm rồi!",
+    "Chúng mình làm quen nhé! Bạn tên gì?",
+    "Cho xin tên để mình còn simp nha!"
+    "Chà, đẹp trai thế này chắc tên cũng cũng! Cho xin vớiiii",
+    "Đẹp trai quá! Cho xin tên để tớ còn kịp thả tim!",
+    "Nụ cười tỏa nắng quá! Tên của bạn là gì vậy?",
+    "Ôi visual crush rồi! Cho xin tên để còn về mơ!",
+    "Thần thái đốn tim! Xin tên để còn biết ai đã đánh cắp trái tim mình!",
+    "Đẹp trai không thể không xin tên! Bạn tên là gì?",
+    "Uầy, đẹp trai thế! Cho tớ biết tên vớiii",
+    "Cho xin tên để tớ còn simp!"
 ];
 
 // DANH SÁCH AUDIO FILES
@@ -224,7 +235,7 @@ const App = () => {
         const randomIndex = Math.floor(Math.random() * WISH_MESSAGES.length);
         const originalMessage = WISH_MESSAGES[randomIndex];
 
-        const personalizedMessage = originalMessage.replace(/mày|ông bạn|bạn nam|đứa bạn/gi, name);
+        const personalizedMessage = originalMessage.replace(/mày|cậu|ông bạn|bạn nam|đứa bạn|bạn/gi, name);
         setMessage(personalizedMessage);
 
         // CHỌN AUDIO THEO CƠ CHẾ VÒNG LẶP KHÔNG LẶP
