@@ -40,16 +40,16 @@ const NAME_PROMPTS = [
 // DANH SÁCH AUDIO FILES
 const AUDIO_FILES = [
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio/03-52.mp3',
-    'https://raw.githubusercontent.com/gnii9/test/main/public/audio1.mp3',
-    'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio2.mov',
+    'https://raw.githubusercontent.com/gnii9/test/main/public//audio/audio1.mp3',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio2.mp3',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio3.mp3',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio4.mp3',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio6.mp3',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio7.mp3',
-    'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio8.m4a',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio8.mp3',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio9.mp3',
-    'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio10.m4a',
-    'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio13.m4a',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio10.mp3',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio13.mp3',
 ];
 
 // --- HELPER FUNCTIONS ---
