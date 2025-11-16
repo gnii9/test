@@ -40,7 +40,7 @@ const NAME_PROMPTS = [
 // DANH SÁCH AUDIO FILES
 const AUDIO_FILES = [
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio/03-52.mp3',
-    'https://raw.githubusercontent.com/gnii9/test/main/public//audio/audio1.mp3',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio1.mp3',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio2.mp3',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio3.mp3',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio4.mp3',
