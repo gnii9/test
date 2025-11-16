@@ -37,15 +37,14 @@ const NAME_PROMPTS = [
     "Nhanh nhanh cho mình biết tên bạn nào!",
     "Tên bạn là gì? Mình tò mò lắm rồi!",
     "Chúng mình làm quen nhé! Bạn tên gì?",
-    "Cho xin tên để mình còn simp nha!"
-    "Chà, đẹp trai thế này chắc tên cũng cũng! Cho xin vớiiii",
+    "Cho xin tên để mình còn simp nha!",
+    "Chà, đẹp trai thế này chắc tên cũng chất! Cho xin với!",
     "Đẹp trai quá! Cho xin tên để tớ còn kịp thả tim!",
     "Nụ cười tỏa nắng quá! Tên của bạn là gì vậy?",
     "Ôi visual crush rồi! Cho xin tên để còn về mơ!",
     "Thần thái đốn tim! Xin tên để còn biết ai đã đánh cắp trái tim mình!",
     "Đẹp trai không thể không xin tên! Bạn tên là gì?",
-    "Uầy, đẹp trai thế! Cho tớ biết tên vớiii",
-    "Cho xin tên để tớ còn simp!"
+    "Uầy, đẹp trai thế! Cho tớ biết tên với!"
 ];
 
 // DANH SÁCH AUDIO FILES
@@ -68,7 +67,6 @@ const AUDIO_FILES = [
     //'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio16.mp3',
     //'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio15.mp3',
 ];
-
 
 // --- HELPER FUNCTIONS ---
 const renderHighlightedMessage = (message, name) => {
