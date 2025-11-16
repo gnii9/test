@@ -37,6 +37,26 @@ const NAME_PROMPTS = [
     "Bạn đẹp trai quá, cho mình xin tên để còn mơ tiếp!"
 ];
 
+// THÊM DANH SÁCH AUDIO FILES
+const AUDIO_FILES = [
+    'https://raw.githubusercontent.com/gnii9/test/main/public/03-52.mp3',
+    // Thêm các file audio khác tại đây
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio1.mp3',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio2.mov',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio3.mp3',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio4.mp3',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio5.mp3',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio6.mp3',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio7.mp3',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio8.m4a',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio9.mp3',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio10.m4a',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio11.mp4',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio12.mp4',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio13.m4a',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio14.mp4',
+    'https://raw.githubusercontent.com/gnii9/test/main/public/audio15.mp4',
+];
 // --- HELPER FUNCTIONS ---
 
 // ĐÃ CHUYỂN ĐỔI: Sử dụng React.createElement thay vì JSX
@@ -137,6 +157,7 @@ const App = () => {
     const [message, setMessage] = useState('');
     const [isCardVisible, setIsCardVisible] = useState(false);
     const [hearts, setHearts] = useState([]);
+    const [currentAudio, setCurrentAudio] = useState('');
 
     const handleWelcomeClick = () => {
         const randomIndex = Math.floor(Math.random() * NAME_PROMPTS.length);
@@ -155,6 +176,9 @@ const App = () => {
         const personalizedMessage = originalMessage.replace(/mày|ông bạn|bạn nam|đứa bạn/gi, name);
         setMessage(personalizedMessage);
 
+        const randomAudioIndex = Math.floor(Math.random() * AUDIO_FILES.length);
+        setCurrentAudio(AUDIO_FILES[randomAudioIndex]);
+
         setStep('card');
 
         setTimeout(() => {
@@ -164,6 +188,7 @@ const App = () => {
 
     const handleBack = () => {
         setIsCardVisible(false);
+        setCurrentAudio('');
 
         setTimeout(() => {
             setStep('welcome');
@@ -228,10 +253,11 @@ const App = () => {
                 ),
                 React.createElement('audio', {
                     controls: true,
-                    src: 'https://raw.githubusercontent.com/gnii9/test/main/public/audio/03-52.mp3',
+                    src: currentAudio,
                     preload: 'auto',
                     className: "w-full max-w-sm rounded-full",
-                    'aria-label': "Audio wish"
+                    'aria-label': "Audio wish",
+                    key: currentAudio
                 },
                     "Trình duyệt của bạn không hỗ trợ phát âm thanh."
                 ),
