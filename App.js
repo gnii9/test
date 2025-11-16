@@ -45,17 +45,12 @@ const AUDIO_FILES = [
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio2.mov',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio3.mp3',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio4.mp3',
-    'https://raw.githubusercontent.com/gnii9/test/main/public/audio5.mp3',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio6.mp3',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio7.mp3',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio8.m4a',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio9.mp3',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio10.m4a',
-    'https://raw.githubusercontent.com/gnii9/test/main/public/audio11.mp4',
-    'https://raw.githubusercontent.com/gnii9/test/main/public/audio12.mp4',
     'https://raw.githubusercontent.com/gnii9/test/main/public/audio13.m4a',
-    'https://raw.githubusercontent.com/gnii9/test/main/public/audio14.mp4',
-    'https://raw.githubusercontent.com/gnii9/test/main/public/audio15.mp4',
 ];
 // --- HELPER FUNCTIONS ---
 
