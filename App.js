@@ -2,26 +2,26 @@ import React, { useState, useRef, useEffect } from 'react';
 
 // --- CONSTANTS ---
 const WISH_MESSAGES = [
-    "Chúc ông bạn 19/11 đẹp trai không cần chỉnh, thông minh không cần hỏi!",
-    "Happy Men's Day! Chúc mày luôn là phiên bản xịn nhất của chính mình!",
-    "19/11 chúc mày sống chất như Gen Z, chill như TikTok, ngầu như Instagram!",
-    "Chúc mày 19/11 không drama, không deadline, chỉ có vibe tốt và niềm vui!",
-    "Chúc bạn nam 19/11 luôn là crush quốc dân trong lòng ai đó!",
-    "19/11 chúc mày đẹp trai như idol, học giỏi như AI, sống chill như streamer!",
-    "Chúc mày 19/11 không bị gọi lên bảng, chỉ bị gọi là soái ca lớp học!",
-    "Happy Men's Day! Chúc mày luôn giữ được phong độ và thần thái như chủ tịch!",
-    "Chúc mày 19/11 có tâm trạng như thứ 7, năng lượng như cà phê sữa đá!",
-    "19/11 chúc mày không toang, không phèn, chỉ có xịn xò và đỉnh kout!",
-    "Chúc mày 19/11 được thầy cô khen, bạn bè nể, crush mê!",
-    "19/11 chúc mày học không lag, não không đơ, tâm trạng không lỗi!",
-    "Chúc mày 19/11 chill như nhạc Lo-fi, sống như vibe của hoàng tử Gen Z!",
-    "Happy Men's Day! Chúc mày luôn là best boy trong lòng hội bạn thân!",
-    "19/11 chúc mày sống như meme: vui vẻ, viral và không bao giờ lỗi thời!",
-    "Chúc mày 19/11 không homework, không stress, chỉ có chill và chill!",
-    "19/11 chúc mày học như thần, thi như mơ, sống như chill!",
-    "19/11 chúc mày không bị thầy cô bắt bài, chỉ bị crush bắt tim!",
-    "Happy Men's Day! Chúc mày luôn là main character trong cuộc đời mình!",
-    "19/11 chúc mày sống như trend: luôn hot, luôn chất, luôn được săn đón!"
+    "Ông bạn ơi, 19/11 này chúc mày càng ngày càng đẹp trai, thông minh và luôn tỏa sáng nhé!",
+    "Happy Men's Day! Chúc cậu luôn giữ được vibe tích cực, sống chất và thành công trong mọi dự định!",
+    "19/11 chúc bạn luôn là ánh sáng trong mắt ai đó, và tìm thấy hạnh phúc trong từng khoảnh khắc!",
+    "Chúc mày 19/11 không chỉ đẹp trai mà còn mạnh mẽ, kiên cường trước mọi thử thách!",
+    "19/11 chúc ông bạn đẹp trai đến mức gương vỡ vì ghen tị, thông minh đến mức máy tính phải bái phục!",
+    "Chúc bạn nam 19/11 luôn giữ được sự tự tin, bản lĩnh và trái tim ấm áp!",
+    "19/11 chúc cậu sống như trend mới nhất: luôn hot, luôn viral và luôn được yêu thương!",
+    "Happy Men's Day! Chúc bạn không chỉ thành công trong công việc mà còn hạnh phúc trong từng phút giây!",
+    "Chúc mày 19/11 có thêm thật nhiều năng lượng để chinh phục mọi mục tiêu và ước mơ!",
+    "19/11 chúc ông bạn luôn nhìn đời bằng đôi mắt tích cực và trái tim rộng mở!",
+    "Chúc bạn nam 19/11 luôn được bao bọc bởi tình yêu thương và sự trân trọng!",
+    "Happy Men's Day! Chúc cậu không ngừng học hỏi, phát triển và trở thành phiên bản tốt nhất mỗi ngày!",
+    "19/11 chúc mày luôn giữ được ngọn lửa nhiệt huyết trong tim và tinh thần chiến binh!",
+    "Chúc ông bạn 19/11 đẹp trai hơn ảnh filter, thông minh hơn trợ lý ảo, và cool ngầu hơn cả idol!",
+    "19/11 chúc bạn tìm thấy ý nghĩa thực sự của cuộc sống và theo đuổi đam mê với cả trái tim!",
+    "Chúc mày 19/11 luôn đủ mạnh mẽ để vượt qua khó khăn, đủ kiên nhẫn để chờ đợi thành công!",
+    "Happy Men's Day! Chúc cậu sống hết mình, cười thật tươi và yêu thương hết lòng!",
+    "19/11 chúc ông bạn luôn tìm thấy bình yên trong tâm hồn và sức mạnh trong tinh thần!",
+    "Chúc bạn nam 19/11 không chỉ thành công mà còn truyền cảm hứng cho những người xung quanh!",
+    "19/11 chúc mày luôn là chính mình, bởi đó là phiên bản đặc biệt và giá trị nhất!"
 ];
 
 const NAME_PROMPTS = [
@@ -57,6 +57,7 @@ const AUDIO_FILES = [
     //'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio16.mp3',
     //'https://raw.githubusercontent.com/gnii9/test/main/public/audio/audio15.mp3',
 ];
+
 
 // --- HELPER FUNCTIONS ---
 const renderHighlightedMessage = (message, name) => {
@@ -149,6 +150,16 @@ const HeartIcon = ({ style }) => {
     );
 };
 
+// Hàm xáo trộn mảng (Fisher-Yates shuffle)
+const shuffleArray = (array) => {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+};
+
 const App = () => {
     const [step, setStep] = useState('welcome');
     const [name, setName] = useState('');
@@ -158,6 +169,46 @@ const App = () => {
     const [hearts, setHearts] = useState([]);
     const [currentAudio, setCurrentAudio] = useState('');
     const [audioKey, setAudioKey] = useState(0);
+    
+    // THÊM STATE MỚI ĐỂ QUẢN LÝ VÒNG LẶP AUDIO
+    const [currentRound, setCurrentRound] = useState([]);
+    const [usedAudios, setUsedAudios] = useState(new Set());
+
+    // KHỞI TẠO VÒNG MỚI KHI CẦN
+    const initializeNewRound = () => {
+        const shuffled = shuffleArray([...AUDIO_FILES]);
+        setCurrentRound(shuffled);
+        setUsedAudios(new Set());
+        return shuffled;
+    };
+
+    // LẤY AUDIO TIẾP THEO TRONG VÒNG
+    const getNextAudio = () => {
+        let round = [...currentRound];
+        
+        // Nếu vòng hiện tại đã hết hoặc chưa có, khởi tạo vòng mới
+        if (round.length === 0 || usedAudios.size >= round.length) {
+            round = initializeNewRound();
+        }
+        
+        // Tìm audio chưa được sử dụng trong vòng hiện tại
+        const availableAudios = round.filter(audio => !usedAudios.has(audio));
+        
+        if (availableAudios.length === 0) {
+            // Nếu không còn audio nào (trường hợp bất khả thi), khởi tạo lại
+            round = initializeNewRound();
+            return round[0];
+        }
+        
+        // Chọn audio ngẫu nhiên từ những audio chưa dùng
+        const randomIndex = Math.floor(Math.random() * availableAudios.length);
+        const selectedAudio = availableAudios[randomIndex];
+        
+        // Đánh dấu audio đã sử dụng
+        setUsedAudios(prev => new Set([...prev, selectedAudio]));
+        
+        return selectedAudio;
+    };
 
     const handleWelcomeClick = () => {
         const randomIndex = Math.floor(Math.random() * NAME_PROMPTS.length);
@@ -176,11 +227,10 @@ const App = () => {
         const personalizedMessage = originalMessage.replace(/mày|ông bạn|bạn nam|đứa bạn/gi, name);
         setMessage(personalizedMessage);
 
-        // CHỌN NGẪU NHIÊN AUDIO VÀ TẠO KEY MỚI
-        const randomAudioIndex = Math.floor(Math.random() * AUDIO_FILES.length);
-        const selectedAudio = AUDIO_FILES[randomAudioIndex];
+        // CHỌN AUDIO THEO CƠ CHẾ VÒNG LẶP KHÔNG LẶP
+        const selectedAudio = getNextAudio();
         setCurrentAudio(selectedAudio);
-        setAudioKey(prev => prev + 1); // QUAN TRỌNG: Thay đổi key để tạo audio element mới
+        setAudioKey(prev => prev + 1);
 
         setStep('card');
 
